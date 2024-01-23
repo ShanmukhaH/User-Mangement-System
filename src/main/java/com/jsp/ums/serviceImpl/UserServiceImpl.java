@@ -7,6 +7,7 @@ import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jsp.ums.entity.User;
@@ -21,6 +22,9 @@ import com.jsp.ums.utility.ResponsesStrcture;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
+	private PasswordEncoder encoder;
+	
+	@Autowired
 	private UserRepoistory userRepoistory;
 	
 	@Autowired
@@ -31,7 +35,7 @@ public class UserServiceImpl implements UserService {
 		return User.builder()
 				.userName(userRequest.getUserName())
 				.email(userRequest.getEmail())
-				.password(userRequest.getPassword())
+				.password(encoder.encode(userRequest.getPassword()))
 				.build();
 	}
 	

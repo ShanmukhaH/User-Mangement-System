@@ -40,7 +40,7 @@ public class UserController {
 									                  description = "Method: structure")) }) 
 					    })
 	
-	@PostMapping("/saveuser")
+	@PostMapping("/user/register")
 	public ResponseEntity<ResponsesStrcture<UserResponse>> saveUser(@RequestBody  @Valid  UserRequest userRequest) {
 		
 		return userservice.saveUser(userRequest);
